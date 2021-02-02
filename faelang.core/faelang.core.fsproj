@@ -6,6 +6,7 @@
 
     <ItemGroup>
         <Compile Include="lexer.fs" />
+        <Compile Include="ast.fs" />
         <Compile Include="parser.fs" />
         <Compile Include="Library.fs" />
     </ItemGroup>

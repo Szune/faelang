@@ -18,14 +18,26 @@
 
 open System
 open faelang.core.lexer
+open faelang.core.parser
 
 [<EntryPoint>]
 let main argv =
     // have a transpiler to C code for portability and speed
     // have a compiler to bytecode and an interpreter for faster builds
-    let tokens = "fn main do +/*- _ident+t9 90i8 another_ident := 1u8, end".ToCharArray()
-                 |> Array.toList
-                 |> Tokenize
-                 |> printfn "Found these tokens: %A"
+    //let code = "fn main do +/*- _ident+t9 90i8 another_ident := 1u8, end"
+    let code = """
+fn main do
+    return 1i64 + 1i64,
+end
+"""
+    let tokens =
+        code.ToCharArray()
+        |> Array.toList
+        |> Tokenize
+        //|> printfn "Found these tokens: %A"
+    let ast =
+        tokens
+        |> parseTokens
+        |> printfn "AST:\n%A"
     
     0 // return an integer exit code

@@ -177,7 +177,7 @@ let stringParser (tokens, chars) =
 
 let whitespaceParser (tokens, chars) =
     match chars with
-    | ' ' :: rest -> (tokens, rest, true)
+    | c :: rest when c = ' ' || c = '\n' || c = '\r' || c = '\t' -> (tokens, rest, true)
     | _ -> (tokens, chars, false)
 
 
